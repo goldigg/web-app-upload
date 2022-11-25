@@ -5,6 +5,8 @@ from presigned_url import *
 import boto3
 from botocore.config import Config
 import os
+from flask_session import Session
+
 
 
 
@@ -40,19 +42,20 @@ def upload_file():
 
     try:
         response = requests.post(presigned_s3['url'], data=presigned_s3['fields'], files= {'file': content } )
-        info="Uploaded to bucket ${response.status_code}" 
+        session['info']="Uploaded to bucket ${response.status_code}" 
     except FileNotFoundError:
         print(f"Couldn't find {file.filename}. For a PUT operation, the key must be the "
               f"name of a file that exists on your computer.")
     else:
-        return redirect("/s3", info=info)
+        return redirect("/s3")
 
 @app.route("/s3", methods=["GET"])
 def s3_form():
     data = requests.get(os.environ['WEB_ENDPOINT'])
     data = json.loads(data.content)
     host = request.host
-    return render_template('s3_form.html', data=data, host=host)
+    info = session['info']
+    return render_template('s3_form.html', data=data, host=host, info=info)
 
 @app.route("/health", methods=["GET"])
 def health():
