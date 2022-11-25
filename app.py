@@ -40,11 +40,12 @@ def upload_file():
 
     try:
         response = requests.post(presigned_s3['url'], data=presigned_s3['fields'], files= {'file': content } )
+        info="Uploaded to bucket ${response.status_code}" 
     except FileNotFoundError:
         print(f"Couldn't find {file.filename}. For a PUT operation, the key must be the "
               f"name of a file that exists on your computer.")
     else:
-        return redirect("/s3")
+        return redirect("/s3", info=info)
 
 @app.route("/s3", methods=["GET"])
 def s3_form():
