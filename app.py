@@ -44,13 +44,14 @@ def upload_file():
         print(f"Couldn't find {file.filename}. For a PUT operation, the key must be the "
               f"name of a file that exists on your computer.")
     else:
-        return redirect("/")
+        return redirect("/s3")
 
 @app.route("/s3", methods=["GET"])
 def s3_form():
     data = requests.get(os.environ['WEB_ENDPOINT'])
     data = json.loads(data.content)
-    return render_template('s3_form.html', data=data)
+    requestUrl = request.url
+    return render_template('s3_form.html', data=data, url=requestUrl)
 
 @app.route("/health", methods=["GET"])
 def health():

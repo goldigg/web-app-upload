@@ -1,7 +1,7 @@
 <html>
    <body>
       <h1> Number of users: {{ data }}</h1>
-      <form action = "http://localhost:5000/upload" method = "POST" 
+      <form action = "{{ url }}/upload" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
