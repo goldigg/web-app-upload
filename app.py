@@ -1,11 +1,10 @@
 import json
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, session
 from werkzeug.utils import secure_filename
 from presigned_url import *
 import boto3
 from botocore.config import Config
 import os
-from flask_session import Session
 
 
 
