@@ -45,7 +45,7 @@ def upload_file():
     else:
         return redirect("/")
 
-@app.route("/", methods=["GET"])
+@app.route("/s3", methods=["GET"])
 def s3_form():
     data = requests.get("os.environ['WEB_ENDPOINT']")
     data = json.loads(data.content)
