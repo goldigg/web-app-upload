@@ -50,7 +50,7 @@ def upload_file():
 def s3_form():
     data = requests.get(os.environ['WEB_ENDPOINT'])
     data = json.loads(data.content)
-    requestUrl = request.url
+    requestUrl = request.uri
     return render_template('s3_form.html', data=data, url=requestUrl)
 
 @app.route("/health", methods=["GET"])
