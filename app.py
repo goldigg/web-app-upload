@@ -48,7 +48,7 @@ def upload_file():
 
 @app.route("/s3", methods=["GET"])
 def s3_form():
-    data = requests.get("os.environ['WEB_ENDPOINT']")
+    data = requests.get(os.environ['WEB_ENDPOINT'])
     data = json.loads(data.content)
     return render_template('s3_form.html', data=data)
 
