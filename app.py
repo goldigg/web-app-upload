@@ -47,12 +47,10 @@ def upload_file():
 
 @app.route("/", methods=["GET"])
 def s3_form():
-    data = requests.get("http://127.0.0.1:5001/info")
+    data = requests.get("os.environ['WEB_ENDPOINT']")
     data = json.loads(data.content)
     return render_template('s3_form.html', data=data)
 
-@app.route("/db", methods=["GET"])
-def db_info():
-    req = requests.get(DB_API_URL)
-    data = json.loads(req.content)
-    return render_template('db_file.html', data=data)
+@app.route("/health", methods=["GET"])
+def health():
+    return "200"
