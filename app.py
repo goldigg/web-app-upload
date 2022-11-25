@@ -49,13 +49,11 @@ def upload_file():
         return redirect(url_for('s3_form', messages=messages))
 
 @app.route("/s3", methods=["GET"])
-def s3_form(messages):
+def s3_form(messages=""):
     data = requests.get(os.environ['WEB_ENDPOINT'])
     data = json.loads(data.content)
     host = request.host
-    messages = request.args['messages']  # counterpart for url_for()
-    info = session['messages']       # counterpart for session
-    return render_template('s3_form.html', data=data, host=host, info=info)
+    return render_template('s3_form.html', data=data, host=host, info=messages)
 
 @app.route("/health", methods=["GET"])
 def health():
