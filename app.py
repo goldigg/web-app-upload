@@ -47,7 +47,7 @@ def upload_file():
         print(f"Couldn't find {file.filename}. For a PUT operation, the key must be the "
               f"name of a file that exists on your computer.")
     else:
-        return redirect(url_for('s3_form', messages=messages))
+        return redirect(url_for('s3_form'))
 
 @app.route("/s3", methods=["GET"])
 def s3_form(messages=""):
