@@ -41,7 +41,7 @@ def upload_file():
     messages=""
     try:
         response = requests.post(presigned_s3['url'], data=presigned_s3['fields'], files= {'file': content } )
-        messages="Uploaded to bucket" + response.status_code" 
+        messages=(f"Uploaded to bucket {response.status_code}")
         print(f'Msg: {messages}')
     except FileNotFoundError:
         print(f"Couldn't find {file.filename}. For a PUT operation, the key must be the "
