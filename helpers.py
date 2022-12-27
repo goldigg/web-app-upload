@@ -1,7 +1,7 @@
-# in util/helpers.py
+# # in util/helpers.py
 
-import boto3, botocore
+# import boto3, botocore
 
-s3 = boto3.client(
-    "s3"
-)
+# s3 = boto3.client(
+#     "s3"
+# )
