@@ -41,7 +41,7 @@ jobs:
       run: |
         docker buildx build --platform=linux/amd64  -t $ECR_REGISTRY/$REGISTRY_ALIAS/$ECR_REPOSITORY:$IMAGE_TAG . --push
     - name: Add hello SecureString to SSM
-      uses: dwardu89/aws-ssm-parameter-storev@2.0.2
+      uses: dwardu89/aws-ssm-parameter-store@v2.0.2
       with:
         ssm-path: "/ggoldmann-upskil-version/s3"
         ssm-value: ${{ github.sha }}
