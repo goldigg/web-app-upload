@@ -39,5 +39,4 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
         LOG_LEVEL: debug
       run: |
-        docker buildx build --platform=linux/amd64  -t $ECR_REGISTRY/$REGISTRY_ALIAS/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$REGISTRY_ALIAS/$ECR_REPOSITORY:$IMAGE_TAG
+        docker buildx build --platform=linux/amd64  -t $ECR_REGISTRY/$REGISTRY_ALIAS/$ECR_REPOSITORY:$IMAGE_TAG . --push
