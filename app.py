@@ -11,6 +11,9 @@ import os
 
 app = Flask(__name__)
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
+
 config = Config(
     region_name = 'eu-central-1',
     signature_version = 'v4',
