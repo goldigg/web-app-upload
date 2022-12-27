@@ -14,16 +14,7 @@ app = Flask(__name__)
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
 
-config = Config(
-    region_name = 'eu-central-1',
-    signature_version = 'v4',
-    retries = {
-        'max_attempts': 10,
-        'mode': 'standard'
-    }
-)
 
-s3_client = boto3.client('s3', config=config)
 s3BucketName = "ggoldmann-pgs-upskill"
 
 @app.route("/upload", methods=["POST"])
