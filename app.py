@@ -25,11 +25,11 @@ config = Config(
     }
 )
 
-s3_client = boto3.client('s3', config=config)
+
 @app.route("/upload", methods=["POST"])
 def upload_file():
     print(f"Upload started")
-
+    s3_client = boto3.client('s3', config=config)
     if "file" not in request.files:
         return "No file key in request.files"
     print(f'File {request.files["file"]} ')
