@@ -43,7 +43,7 @@ jobs:
     - name: Add hello SecureString to SSM
       uses: dwardu89/aws-ssm-parameter-store@v2.0.2
       with:
-        ssm-path: "/ggoldmann-upskil-version/s3"
+        ssm-path: "/ggoldmann-upskil-version/web"
         ssm-value: ${{ github.sha }}
         aws-region: eu-central-1
         ssm-value-type: "String"
