@@ -28,13 +28,16 @@ config = Config(
 s3_client = boto3.client('s3', config=config)
 @app.route("/upload", methods=["POST"])
 def upload_file():
+    print(f"Upload started")
+
     if "file" not in request.files:
         return "No file key in request.files"
-
+    print(f'File {request.files["file"]} ')
     file = request.files["file"]
     
     if file.filename == "":
         return "Please select a file"
+    print(f'S3 client {s3_client} ')
     file.filename = secure_filename(file.filename)    
     presigned_s3= generate_presigned_url(s3_client, {'Bucket': s3BucketName, 'Key': file.filename }, 60)
 
