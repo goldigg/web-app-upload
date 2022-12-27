@@ -16,7 +16,16 @@ if __name__ == '__main__':
 
 
 s3BucketName = "ggoldmann-pgs-upskill"
+config = Config(
+    region_name = 'eu-central-1',
+    signature_version = 'v4',
+    retries = {
+        'max_attempts': 10,
+        'mode': 'standard'
+    }
+)
 
+s3_client = boto3.client('s3', config=config)
 @app.route("/upload", methods=["POST"])
 def upload_file():
     if "file" not in request.files:
